@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名古屋親子暑期探險</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F2;
+    --card:#FFFDF9;
+    --text:#4A403A;
+    --sub:#8C827A;
+    --line:#EADFD3;
+    --mint:#BFE6D6;  --mint-d:#8CCBB2;
+    --butter:#FCE9A8;--butter-d:#E9CC6C;
+    --peach:#F9CFC4; --peach-d:#E9A595;
+    --sky:#C6DDF2;   --sky-d:#93BCE0;
+    --lilac:#DDD3F0; --lilac-d:#B8A8DC;
+    --spring:cubic-bezier(.34,1.56,.64,1);
+    --r-lg:28px; --r-md:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:"Zen Maru Gothic","M PLUS Rounded 1c",sans-serif;
+    color:var(--text);
+    background-color:var(--bg);
+    background-image:radial-gradient(rgba(140,130,122,.13) 1.2px,transparent 1.3px);
+    background-size:18px 18px;
+    line-height:1.75;
+    min-height:100vh;
+    padding:28px 16px 80px;
+  }
+  .wrap{max-width:980px;margin:0 auto}
+  h1,h2,h3,.round{font-family:"M PLUS Rounded 1c","Zen Maru Gothic",sans-serif}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:var(--card);
+    border-radius:var(--r-lg);
+    padding:40px 32px 32px;
+    border:2px solid var(--line);
+    outline:2px dashed var(--peach);
+    outline-offset:-12px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;border-radius:50%;opacity:.55;z-index:0;
+  }
+  .hero::before{width:180px;height:180px;background:var(--mint);top:-70px;left:-60px}
+  .hero::after{width:140px;height:140px;background:var(--butter);bottom:-60px;right:-40px}
+  .hero > *{position:relative;z-index:1}
+  .tag{
+    display:inline-block;background:var(--butter);
+    padding:4px 16px;border-radius:999px;font-weight:700;font-size:.85rem;
+    box-shadow:0 3px 0 var(--butter-d);margin-bottom:14px;
+  }
+  .hero h1{font-size:clamp(1.6rem,4.5vw,2.5rem);font-weight:800;letter-spacing:.04em;line-height:1.35}
+  .hero h1 .pop{color:#D9846F}
+  .hero p.date{color:var(--sub);margin-top:8px;font-weight:500}
+  .deco{font-size:1.6rem;margin-top:10px;letter-spacing:.4em}
+
+  /* countdown */
+  .countdown{
+    display:flex;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap;
+  }
+  .cd-box{
+    background:var(--sky);border-radius:20px;padding:10px 16px;min-width:76px;
+    box-shadow:0 3px 0 var(--sky-d);
+    transition:transform .45s var(--spring);
+  }
+  .cd-box:hover{transform:scale(1.08) rotate(-1.5deg)}
+  .cd-box b{display:block;font-size:1.6rem;font-family:"M PLUS Rounded 1c";line-height:1.2}
+  .cd-box span{font-size:.75rem;color:var(--sub)}
+  .cd-note{margin-top:10px;font-size:.85rem;color:var(--sub)}
+
+  /* ---------- Stats ---------- */
+  .stats{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:22px 0 8px;
+  }
+  .stat{
+    background:var(--card);border-radius:var(--r-md);padding:18px 14px;text-align:center;
+    border:2px solid var(--line);
+    transition:transform .45s var(--spring);
+  }
+  .stat:nth-child(1){box-shadow:0 3px 0 var(--mint-d);border-color:var(--mint)}
+  .stat:nth-child(2){box-shadow:0 3px 0 var(--peach-d);border-color:var(--peach)}
+  .stat:nth-child(3){box-shadow:0 3px 0 var(--sky-d);border-color:var(--sky)}
+  .stat:nth-child(4){box-shadow:0 3px 0 var(--butter-d);border-color:var(--butter)}
+  .stat:hover{transform:translateY(-3px) scale(1.04) rotate(1deg)}
+  .stat .ico{font-size:1.7rem}
+  .stat small{display:block;color:var(--sub);font-size:.8rem;margin-top:2px}
+  .stat b{font-size:1.05rem}
+
+  /* ---------- Section ---------- */
+  section{margin-top:40px}
+  .sec-title{
+    display:flex;align-items:center;gap:10px;font-size:1.35rem;font-weight:800;margin-bottom:16px;
+  }
+  .sec-title .bubble{
+    width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:1.25rem;
+    background:var(--peach);box-shadow:0 3px 0 var(--peach-d);
+  }
+  .sec-title small{font-size:.85rem;color:var(--sub);font-weight:500}
+
+  .card{
+    background:var(--card);border-radius:var(--r-lg);padding:24px 26px;
+    border:2px solid var(--line);
+    position:relative;
+    transition:transform .5s var(--spring);
+  }
+  .card.dotted{border:3px dotted var(--mint-d)}
+  .card.double{border:4px double var(--sky-d)}
+
+  /* hotels */
+  .hotels{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .hotel:hover{transform:rotate(-1deg) scale(1.02)}
+  .hotel .nights{
+    display:inline-block;font-size:.8rem;font-weight:700;padding:3px 12px;border-radius:999px;margin-bottom:8px;
+  }
+  .hotel:nth-child(1) .nights{background:var(--mint);box-shadow:0 2px 0 var(--mint-d)}
+  .hotel:nth-child(2) .nights{background:var(--lilac);box-shadow:0 2px 0 var(--lilac-d)}
+  .hotel h3{font-size:1.1rem;margin-bottom:6px}
+  .hotel p{color:var(--sub);font-size:.92rem}
+
+  /* ---------- Mode toggle ---------- */
+  .toolbar{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px;
+  }
+  .mode{
+    display:flex;background:var(--card);border:2px solid var(--line);border-radius:999px;padding:5px;gap:4px;
+  }
+  .mode button{
+    border:none;background:transparent;font:inherit;font-weight:700;color:var(--sub);
+    padding:7px 16px;border-radius:999px;cursor:pointer;
+    transition:background .3s,color .3s,transform .4s var(--spring);
+  }
+  .mode button:hover{transform:scale(1.06)}
+  .mode button.on.sun{background:var(--butter);color:var(--text)}
+  .mode button.on.rain{background:var(--sky);color:var(--text)}
+
+  /* ---------- Sticker buttons (day tabs) ---------- */
+  .tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+  .btn{
+    font:inherit;font-weight:700;color:var(--text);cursor:pointer;
+    border:2px solid #fff;border-radius:22px;padding:10px 16px;
+    position:relative;top:0;
+    box-shadow:0 3px 0 var(--sh,#d8cdc1);
+    transition:transform .45s var(--spring),top .12s,box-shadow .12s;
+    text-align:center;line-height:1.3;
+  }
+  .btn small{display:block;font-size:.72rem;color:var(--sub);font-weight:500}
+  .btn:hover{transform:scale(1.07) rotate(-1.5deg)}
+  .btn:nth-child(even):hover{transform:scale(1.07) rotate(1.5deg)}
+  .btn:active{top:3px;box-shadow:0 0 0 var(--sh,#d8cdc1)}
+  .btn.c1{background:var(--mint);--sh:var(--mint-d)}
+  .btn.c2{background:var(--butter);--sh:var(--butter-d)}
+  .btn.c3{background:var(--peach);--sh:var(--peach-d)}
+  .btn.c4{background:var(--sky);--sh:var(--sky-d)}
+  .btn.c5{background:var(--lilac);--sh:var(--lilac-d)}
+  .btn.c6{background:#F6D9E4;--sh:#E3AFC3}
+  .btn.active{outline:3px dashed var(--text);outline-offset:3px}
+
+  /* day panel */
+  .day{display:none}
+  .day.show{display:block;animation:pop .6s var(--spring)}
+  @keyframes pop{from{opacity:0;transform:translateY(18px) scale(.96)}to{opacity:1;transform:none}}
+  .day-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .day-head h3{font-size:1.3rem;font-weight:800}
+  .day-head .d{color:var(--sub);font-size:.9rem;white-space:nowrap}
+  .spot{
+    margin:14px 0 18px;padding:14px 18px;border-radius:20px;background:var(--bg);
+    border:2px dashed var(--line);display:flex;gap:14px;align-items:center;
+  }
+  .spot .emoji{font-size:2.4rem;flex-shrink:0;transition:transform .5s var(--spring)}
+  .spot:hover .emoji{transform:rotate(-10deg) scale(1.15)}
+  .spot b{display:block}
+  .spot p{color:var(--sub);font-size:.9rem}
+
+  .timeline{list-style:none;position:relative;padding-left:26px}
+  .timeline::before{
+    content:"";position:absolute;left:8px;top:6px;bottom:6px;width:0;
+    border-left:3px dotted var(--line);
+  }
+  .timeline li{position:relative;padding:6px 0 14px}
+  .timeline li::before{
+    content:"";position:absolute;left:-24px;top:12px;width:14px;height:14px;border-radius:50%;
+    background:var(--dot,var(--mint));border:3px solid #fff;box-shadow:0 0 0 2px var(--dot-d,var(--mint-d));
+  }
+  .timeline .t{
+    display:inline-block;font-family:"M PLUS Rounded 1c";font-weight:700;font-size:.85rem;
+    background:var(--dot,var(--mint));padding:1px 10px;border-radius:999px;margin-bottom:3px;
+  }
+
+  .notes{display:grid;gap:10px;margin-top:6px}
+  .note{
+    display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-radius:18px;font-size:.92rem;
+    transition:opacity .35s,transform .5s var(--spring),filter .35s;
+  }
+  .note .lab{
+    flex-shrink:0;font-weight:800;font-size:.78rem;padding:3px 10px;border-radius:999px;background:#fff;
+  }
+  .note.risk{background:#FDEDE8}
+  .note.risk .lab{color:#C9715C}
+  .note.rainy{background:#EAF2FA}
+  .note.rainy .lab{color:#5E8BB5}
+  body.rain-mode .note.rainy{transform:scale(1.03);box-shadow:0 3px 0 var(--sky-d)}
+  body.rain-mode .note.risk{opacity:.55}
+  body.sun-mode .note.rainy{opacity:.55}
+
+  .day-nav{display:flex;justify-content:space-between;margin-top:20px;gap:10px}
+  .day-nav .btn{background:var(--card);--sh:var(--line);border-color:var(--line)}
+  .day-nav .btn[disabled]{opacity:.35;pointer-events:none}
+
+  /* ---------- Meals ---------- */
+  .meals{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .meal{
+    background:var(--card);border-radius:var(--r-md);padding:16px 18px;border:2px solid var(--line);
+    transition:transform .5s var(--spring);
+  }
+  .meal:hover{transform:scale(1.04) rotate(1.2deg)}
+  .meal:nth-child(odd):hover{transform:scale(1.04) rotate(-1deg)}
+  .meal .dn{
+    display:inline-block;font-weight:800;font-size:.8rem;padding:2px 12px;border-radius:999px;margin-bottom:8px;
+  }
+  .meal dl{font-size:.9rem}
+  .meal dt{color:var(--sub);font-size:.78rem;margin-top:4px}
+  .meal dd{font-weight:700}
+  .meal .tip{margin-top:8px;font-size:.82rem;color:var(--sub);border-top:2px dotted var(--line);padding-top:8px}
+
+  /* ---------- Info ---------- */
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  .info h3{font-size:1.1rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .info ul{list-style:none;display:grid;gap:10px}
+  .info li{padding-left:24px;position:relative;font-size:.93rem}
+  .info li::before{content:"✿";position:absolute;left:0;color:var(--peach-d)}
+  .info li b{color:var(--text)}
+  .info li span{color:var(--sub)}
+  .sos{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+  .sos a{
+    text-decoration:none;flex:1;min-width:120px;text-align:center;
+  }
+  .sos a b{display:block;font-size:1.5rem;font-family:"M PLUS Rounded 1c"}
+
+  /* checklist */
+  .check{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .check label{
+    display:flex;gap:10px;align-items:center;cursor:pointer;padding:10px 14px;border-radius:18px;
+    background:var(--bg);border:2px solid var(--line);font-size:.93rem;
+    transition:transform .45s var(--spring),background .3s;
+  }
+  .check label:hover{transform:scale(1.03) rotate(-.8deg)}
+  .check input{appearance:none;width:22px;height:22px;border-radius:50%;border:2px solid var(--mint-d);flex-shrink:0;display:grid;place-items:center;background:#fff;cursor:pointer;transition:background .3s}
+  .check input:checked{background:var(--mint)}
+  .check input:checked::after{content:"✓";font-size:.8rem;font-weight:900;color:var(--text)}
+  .check input:checked + span{text-decoration:line-through;color:var(--sub)}
+  .progress{height:14px;background:var(--bg);border-radius:999px;border:2px solid var(--line);margin:4px 0 16px;overflow:hidden}
+  .progress i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,var(--mint),var(--mint) 8px,var(--mint-d) 8px,var(--mint-d) 16px);border-radius:999px;transition:width .6s var(--spring)}
+
+  footer{text-align:center;color:var(--sub);font-size:.85rem;margin-top:48px}
+  footer .deco{font-size:1.2rem}
+
+  @media (max-width:760px){
+    .stats{grid-template-columns:repeat(2,1fr)}
+    .hotels,.info-grid{grid-template-columns:1fr}
+    .meals{grid-template-columns:1fr 1fr}
+    .check{grid-template-columns:1fr}
+    .card{padding:20px 18px}
+    .hero{padding:34px 18px 26px}
+  }
+  @media (max-width:460px){
+    .meals{grid-template-columns:1fr}
+    .tabs .btn{flex:1 1 calc(33% - 10px);padding:9px 6px}
+  }
+</style>
+</head>
+<body class="sun-mode">
+<div class="wrap">
+
+  <!-- Hero -->
+  <header class="hero">
+    <span class="tag">🚗 9大7小 大家庭專屬</span>
+    <h1>名古屋<span class="pop">親子暑期</span>探險<br>6天5夜行程手冊</h1>
+    <p class="date">2027年7月5日（一）～ 7月10日（六）</p>
+    <div class="deco">🏎️🐬🚄🏯✈️</div>
+    <div class="countdown" id="countdown">
+      <div class="cd-box"><b id="cd-d">--</b><span>天</span></div>
+      <div class="cd-box"><b id="cd-h">--</b><span>時</span></div>
+      <div class="cd-box"><b id="cd-m">--</b><span>分</span></div>
+      <div class="cd-box"><b id="cd-s">--</b><span>秒</span></div>
+    </div>
+    <p class="cd-note" id="cd-note">距離出發還有</p>
+  </header>
+
+  <!-- Stats -->
+  <div class="stats">
+    <div class="stat"><div class="ico">👨‍👩‍👧‍👦</div><small>出遊總人數</small><b>16 人（9大7小）</b></div>
+    <div class="stat"><div class="ico">🧸</div><small>兒童年齡層</small><b>1 歲 ～ 7 歲</b></div>
+    <div class="stat"><div class="ico">🚐</div><small>主要交通</small><b>2台9人座包車</b></div>
+    <div class="stat"><div class="ico">☀️</div><small>旅遊季節</small><b>暑期（梅雨末期）</b></div>
+  </div>
+
+  <!-- Hotels -->
+  <section>
+    <div class="sec-title"><span class="bubble">🛏️</span>住宿與飯店配置<small>零搬家最佳化</small></div>
+    <div class="hotels">
+      <div class="card hotel dotted">
+        <span class="nights">第一晚 7/5</span>
+        <h3>鈴鹿賽車場飯店<br><small style="color:var(--sub);font-weight:500">Suzuka Circuit Hotel</small></h3>
+        <p>首日班機抵達後專車直達！入住園區飯店享早鳥入園資格與專屬溫泉「THE SPA」。大件行李於第二日傍晚直接由專車載往名古屋市區，零重複搬運負擔。</p>
+      </div>
+      <div class="card hotel double">
+        <span class="nights">第二～五晚 7/6 ～ 7/10</span>
+        <h3>名古屋車站周邊飯店<br><small style="color:var(--sub);font-weight:500">連住 4 晚</small></h3>
+        <p>連住 4 晚完全不換房，9 大 7 小無須天天打包行李。位處名古屋交通樞紐，周邊百貨、藥局、餐廳密集，方便大團體採買與彈性用餐。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Days -->
+  <section id="days">
+    <div class="sec-title"><span class="bubble" style="background:var(--mint);box-shadow:0 3px 0 var(--mint-d)">🗓️</span>每日行程</div>
+    <div class="toolbar">
+      <div class="tabs" id="tabs"></div>
+      <div class="mode" role="group" aria-label="天氣模式">
+        <button class="sun on" data-mode="sun">☀️ 晴天</button>
+        <button class="rain" data-mode="rain">☔ 雨天備案</button>
+      </div>
+    </div>
+    <div class="card" id="day-card">
+      <div id="day-panels"></div>
+      <div class="day-nav">
+        <button class="btn" id="prev">← 前一天</button>
+        <button class="btn" id="next">下一天 →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meals -->
+  <section>
+    <div class="sec-title"><span class="bubble" style="background:var(--butter);box-shadow:0 3px 0 var(--butter-d)">🍱</span>每日餐廳與備餐建議</div>
+    <div class="meals" id="meals"></div>
+  </section>
+
+  <!-- Info -->
+  <section>
+    <div class="sec-title"><span class="bubble" style="background:var(--sky);box-shadow:0 3px 0 var(--sky-d)">📋</span>緊急應變與注意事項<small>9大7小大家庭出行</small></div>
+    <div class="info-grid">
+      <div class="card info dotted">
+        <h3>🚐 包車與接駁服務</h3>
+        <ul>
+          <li><b>包車配置：</b><span>2 台 9 人座車輛（含司機），請提前確認嬰兒安全座椅數量。</span></li>
+          <li><b>行李空間：</b><span>建議行李箱集中放置於第一台車後車廂，第二台車留空放推車與隨身包。</span></li>
+        </ul>
+      </div>
+      <div class="card info double">
+        <h3>🚑 緊急聯絡與醫療須知</h3>
+        <div class="sos">
+          <a href="tel:119" class="btn c3"><b>119</b><small>緊急救護</small></a>
+          <a href="tel:110" class="btn c4"><b>110</b><small>警察局</small></a>
+        </div>
+        <ul>
+          <li><b>名古屋市夜間急病診療所</b><br><span>愛知縣名古屋市東區葵1-4-29<br>電話：<a href="tel:0529377821" style="color:var(--text)">052-937-7821</a></span></li>
+          <li><span>請隨身攜帶所有成員之護照影本與海外醫療保險單據。</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:18px">
+      <h3 class="round" style="font-size:1.1rem;margin-bottom:6px">✅ 出發前確認清單 <small style="color:var(--sub);font-weight:500" id="ck-count"></small></h3>
+      <div class="progress"><i id="ck-bar"></i></div>
+      <ul class="check" id="checklist"></ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="deco">🌸 🍙 🌸</div>
+    名古屋親子暑期探險行程手冊 · 祝全家旅途愉快！
+  </footer>
+</div>
+
+<script>
+(() => {
+  const DAYS = [
+    {
+      title:"抵達名古屋 ➔ 直送鈴鹿賽車場飯店", date:"2027 年 7 月 5 日（星期一）", short:"7/5 一",
+      emoji:"🏨", spot:"鈴鹿賽車場飯店（Suzuka Circuit Hotel）",
+      desc:"專為親子設計的度假飯店，提供賽車主題客房與寬敞溫泉區，讓小朋友第一天就感受賽車氛圍。",
+      items:[
+        ["14:00 - 15:00","班機抵達中部國際機場（NGO），辦理入境與會合。"],
+        ["15:30 - 16:40","乘坐 9 人座包車專車直送鈴鹿賽車場飯店（約 70 分鐘）。"],
+        ["17:00 - 20:30","辦理入住，花園散步、享用飯店自助晚餐，體驗天然溫泉「THE SPA」。"]
+      ],
+      risk:"首日剛下飛機不排高強度景點，充分享受飯店溫泉設施養精蓄銳。",
+      rain:"飯店內設施與溫泉全室內，完全不受天候影響。"
+    },
+    {
+      title:"鈴鹿 MOTOPIA 樂園暢玩 ➔ 回名古屋市區", date:"2027 年 7 月 6 日（星期二）", short:"7/6 二",
+      emoji:"🏎️", spot:"鈴鹿賽車場 MOTOPIA 樂園",
+      desc:"專門為幼童與兒童設計的自駕賽車樂園，1-7 歲小朋友可體驗 Kochira Racing 與駕駛執照感。",
+      items:[
+        ["09:30 - 16:30","全天暢玩鈴鹿 MOTOPIA 樂園，優先體驗兒童駕照賽車與幼童專屬設施。"],
+        ["17:00 - 18:15","閉園後專車接送至名古屋車站飯店 Check-in（連住 4 晚）。"],
+        ["19:00","名古屋車站周邊享用晚餐（如矢場豚味噌豬排）。"]
+      ],
+      risk:"戶外活動注意酷暑防曬，隨時至室內補水休息。",
+      rain:"若遇到大雨，轉往 Putti Town 室內賽車體驗館與賽車劇場。"
+    },
+    {
+      title:"名古屋港水族館與南極觀測船富士號", date:"2027 年 7 月 7 日（星期三）", short:"7/7 三",
+      emoji:"🐬", spot:"名古屋港水族館 & 富士號",
+      desc:"日本頂級水族館，擁巨大的鯨豚表演池與南極探險實體船，寬敞平坦適合雙人推車暢行。",
+      items:[
+        ["09:30 - 13:00","專車前往名古屋港水族館，觀賞小白鯨、虎鯨與大型海豚表演。"],
+        ["13:30 - 15:30","參訪正對面「南極觀測船富士號」，體驗極地探險船艙。"],
+        ["17:30","返回市區享用名古屋名物鰻魚飯三吃（蓬萊軒／備長）。"]
+      ],
+      risk:"海豚看台為半戶外，請準備遮陽帽與防曬乳。",
+      rain:"水族館南北館與觀測船皆為全室內，下雨完全無影響。"
+    },
+    {
+      title:"磁浮・鐵道館 ➔ 豐田產業技術紀念館", date:"2027 年 7 月 8 日（星期四）", short:"7/8 四",
+      emoji:"🚄", spot:"鐵道館與豐田產業紀念館",
+      desc:"一次集齊日本新幹線與汽車科技的震撼展覽，館內設有豐富的互動機械與兒童「科技樂園」。",
+      items:[
+        ["09:30 - 12:30","參觀磁浮・鐵道館，體驗新幹線實體展示與鐵道模型巨蛋。"],
+        ["13:30 - 16:30","前往豐田產業技術紀念館，觀看織布機與汽車製造演示。"],
+        ["17:30","榮町商圈（Oasis 21、電視塔夜景）散步享用晚餐。"]
+      ],
+      risk:"兩館展示空間較大，請注意幼童安全以免走失。",
+      rain:"全程為室內空調展館，為最佳雨天避雨方案。"
+    },
+    {
+      title:"市區輕鬆彈性日 ➔ 名古屋城與購物補貨", date:"2027 年 7 月 9 日（星期五）", short:"7/9 五",
+      emoji:"🏯", spot:"名古屋城公園與車站商圈",
+      desc:"兼具歷史建築之美與現代購物機能，第 5 天做為彈性緩衝日，讓大人小孩補足精神。",
+      items:[
+        ["09:30 - 12:00","名城公園／名古屋城外圍散步拍照，或選訪麵包超人兒童博物館。"],
+        ["13:30 - 17:00","名古屋車站周邊（Bic Camera、高島屋、藥局）分批採買補貨。"],
+        ["18:00","享用名古屋在地慶功宴晚餐，整理打包行李。"]
+      ],
+      risk:"大團體購物時請約定好集合地點與聯絡方式。",
+      rain:"雨天可轉往名古屋車站地下街或大型百貨連通商圈。"
+    },
+    {
+      title:"FLIGHT OF DREAMS 夢想飛行館 ➔ 搭機返家", date:"2027 年 7 月 10 日（星期六）", short:"7/10 六",
+      emoji:"✈️", spot:"FLIGHT OF DREAMS（機場旁）",
+      desc:"位於中部國際機場內，近距離觀賞波音 787 實機與沉浸式光影秀，設有免費兒童飛行遊樂區。",
+      items:[
+        ["09:30 - 10:15","辦理飯店退房，專車前往中部國際機場（帶齊行李）。"],
+        ["10:30 - 13:00","暢遊 FLIGHT OF DREAMS，享用美式餐食與光影展覽。"],
+        ["起飛前 2.5 小時","前往航廈辦理登機手續、免稅店採購，順利返家！"]
+      ],
+      risk:"請隨時注意航班登機時間，預留托運行李與安檢時間。",
+      rain:"展館直通機場航廈，室內連通完全免雨淋。"
+    }
+  ];
+
+  const MEALS = [
+    ["機上餐點／機場簡餐","鈴鹿飯店自助餐","飯店提供兒童餐具與高腳椅"],
+    ["MOTOPIA 樂園餐廳","矢場豚味噌豬排","豬排店可分桌或預約包廂"],
+    ["水族館美食街","蓬萊軒／備長鰻魚飯","備長建議提早 17:00 前前往"],
+    ["鐵道館主題便當","榮町 Oasis 21 餐廳街","新幹線造型便當深受小朋友喜愛"],
+    ["金シャチ橫丁美食街","名古屋地雞手羽先慶功宴","大團體建議提前訂位"],
+    ["FLIGHT OF DREAMS 餐飲區","溫暖的家","美式餐廳選擇多且方便照顧小孩"]
+  ];
+
+  const CHECK = [
+    "確認嬰兒安全座椅數量","全員護照影本","海外醫療保險單據","遮陽帽與防曬乳",
+    "推車（第二台車放置）","約定大團體集合地點與聯絡方式","預約鰻魚飯與慶功宴餐廳","確認回程航班登機時間"
+  ];
+
+  const COLORS = [["--mint","--mint-d"],["--butter","--butter-d"],["--peach","--peach-d"],["--sky","--sky-d"],["--lilac","--lilac-d"],["#F6D9E4","#E3AFC3"]];
+  const cv = c => c.startsWith("--") ? `var(${c})` : c;
+
+  /* ---- render days ---- */
+  const tabs = document.getElementById("tabs");
+  const panels = document.getElementById("day-panels");
+  DAYS.forEach((d,i) => {
+    const b = document.createElement("button");
+    b.className = `btn c${i+1}`;
+    b.innerHTML = `Day ${i+1}<small>${d.short}</small>`;
+    b.onclick = () => go(i);
+    tabs.appendChild(b);
+
+    const [c, cd] = COLORS[i];
+    const el = document.createElement("div");
+    el.className = "day";
+    el.style.setProperty("--dot", cv(c));
+    el.style.setProperty("--dot-d", cv(cd));
+    el.innerHTML = `
+      <div class="day-head">
+        <h3>Day ${i+1}：${d.title}</h3><span class="d">${d.date}</span>
+      </div>
+      <div class="spot"><span class="emoji">${d.emoji}</span><div><b>${d.spot}</b><p>${d.desc}</p></div></div>
+      <ul class="timeline">${d.items.map(([t,x]) => `<li><span class="t">${t}</span><div>${x}</div></li>`).join("")}</ul>
+      <div class="notes">
+        <div class="note risk"><span class="lab">⚠️ 風險標示</span><span>${d.risk}</span></div>
+        <div class="note rainy"><span class="lab">☔ 雨天備案</span><span>${d.rain}</span></div>
+      </div>`;
+    panels.appendChild(el);
+  });
+
+  let cur = 0;
+  const prev = document.getElementById("prev"), next = document.getElementById("next");
+  function go(i){
+    cur = i;
+    [...panels.children].forEach((p,k) => p.classList.toggle("show", k===i));
+    [...tabs.children].forEach((t,k) => t.classList.toggle("active", k===i));
+    prev.disabled = i===0; next.disabled = i===DAYS.length-1;
+    try{ localStorage.setItem("ngy-day", i); }catch(e){}
+  }
+  prev.onclick = () => cur>0 && go(cur-1);
+  next.onclick = () => cur<DAYS.length-1 && go(cur+1);
+  let saved = 0; try{ saved = +localStorage.getItem("ngy-day") || 0; }catch(e){}
+  go(Math.min(Math.max(saved,0),DAYS.length-1));
+
+  /* ---- weather mode ---- */
+  document.querySelectorAll(".mode button").forEach(b => {
+    b.onclick = () => {
+      document.querySelectorAll(".mode button").forEach(x => x.classList.remove("on"));
+      b.classList.add("on");
+      document.body.classList.toggle("rain-mode", b.dataset.mode==="rain");
+      document.body.classList.toggle("sun-mode", b.dataset.mode==="sun");
+    };
+  });
+
+  /* ---- meals ---- */
+  document.getElementById("meals").innerHTML = MEALS.map(([l,d,t],i) => {
+    const [c,cd] = COLORS[i];
+    return `<div class="meal"><span class="dn" style="background:${cv(c)};box-shadow:0 2px 0 ${cv(cd)}">Day ${i+1}</span>
+      <dl><dt>🍙 午餐</dt><dd>${l}</dd><dt>🍽️ 晚餐</dt><dd>${d}</dd></dl>
+      <div class="tip">👶 ${t}</div></div>`;
+  }).join("");
+
+  /* ---- checklist ---- */
+  let ck = {}; try{ ck = JSON.parse(localStorage.getItem("ngy-ck")||"{}"); }catch(e){}
+  const list = document.getElementById("checklist");
+  list.innerHTML = CHECK.map((c,i) => `<li><label><input type="checkbox" data-i="${i}" ${ck[i]?"checked":""}><span>${c}</span></label></li>`).join("");
+  function upd(){
+    const n = list.querySelectorAll("input:checked").length;
+    document.getElementById("ck-bar").style.width = (n/CHECK.length*100)+"%";
+    document.getElementById("ck-count").textContent = `${n} / ${CHECK.length}`;
+  }
+  list.addEventListener("change", e => {
+    ck[e.target.dataset.i] = e.target.checked;
+    try{ localStorage.setItem("ngy-ck", JSON.stringify(ck)); }catch(err){}
+    upd();
+  });
+  upd();
+
+  /* ---- countdown ---- */
+  const start = new Date("2027-07-05T14:00:00+09:00");
+  const end = new Date("2027-07-10T23:59:00+09:00");
+  const pad = n => String(n).padStart(2,"0");
+  function tick(){
+    const now = new Date(), diff = start - now;
+    const note = document.getElementById("cd-note");
+    if(diff <= 0){
+      document.getElementById("countdown").style.display = "none";
+      note.textContent = now < end ? "🎉 旅程進行中，玩得開心！" : "🌸 旅程圓滿結束，歡迎回家！";
+      return;
+    }
+    note.textContent = "距離抵達名古屋還有";
+    const s = Math.floor(diff/1000);
+    document.getElementById("cd-d").textContent = Math.floor(s/86400);
+    document.getElementById("cd-h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("cd-m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("cd-s").textContent = pad(s%60);
+  }
+  tick(); setInterval(tick,1000);
+})();
+</script>
+</body>
+</html>
